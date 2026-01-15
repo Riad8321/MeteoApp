@@ -1,0 +1,19 @@
+<main class="main">
+  <div class="recherche">
+    <input type="text" [(ngModel)]="villeSaisie" placeholder="Entrez une ville" />
+    <button class="boutonrecherche" (click)="recherchemeteo()">Voir la météo</button>
+  </div>
+  <div *ngIf="resultatsmeteo" class="carte-meteo">
+    <h3>Meteo a {{ resultatsmeteo.location.name }}</h3>
+
+    <p>Température : {{ resultatsmeteo.current.temp_c }}°</p>
+    <p>Ressenti : {{ resultatsmeteo.current.feelslike_c }}°</p>
+    <p>Condition :<img [src]="resultatsmeteo.current.condition.icon" /></p>
+    <p>Humidité : {{ resultatsmeteo.current.humidity }}%</p>
+  </div>
+  <div *ngIf="!resultatsmeteo">
+    <p>Ville non trouvé</p>
+  </div>
+</main>
+
+<router-outlet />
