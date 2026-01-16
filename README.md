@@ -20,7 +20,7 @@ Application météo développée avec **Angular** permettant de rechercher une v
 
 ## 🌐 API
 
-- **Source** : OpenWeatherMap
+- **Source** : [OpenWeatherMap](https://www.weatherapi.com/)
 - **Format** : JSON
 - **Communication** : Asynchrone via `HttpClient`
 
@@ -34,6 +34,37 @@ Application météo développée avec **Angular** permettant de rechercher une v
 - OpenWeatherMap API
 - RxJS
 - Git & GitHub
+
+---
+
+## 🔐 Configuration de la clé API
+
+Pour utiliser l’application, tu dois fournir ta propre clé API météo.
+
+### 1️⃣ Créer le fichier d’environnement
+
+Crée le fichier suivant :
+
+```
+src/environments/environment.ts
+```
+
+Et ajoute :
+
+```ts
+export const environment = {
+  production: false,
+  weatherApiKey: 'TA_CLE_API_ICI',
+};
+```
+
+### 2️⃣ Utilisation dans le service
+
+La clé est ensuite utilisée dans le service via :
+
+```ts
+import { environment } from '../environments/environment';
+```
 
 ---
 
@@ -75,19 +106,13 @@ http://localhost:4200
 
 ---
 
-## 📸 Aperçu
-
-_(Ajoute ici une capture d’écran plus tard)_
-
----
-
 ## 👨‍💻 Auteur
 
-Développé par **[Ton Nom]**
+Développé par **Raphael & Riad**
 📍 Projet Angular
 
 ---
 
 ## 📄 Licence
 
-Ce projet est open-source et libre d’uti
+Ce projet est open-source et libre d’utilisation.
