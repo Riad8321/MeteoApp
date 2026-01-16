@@ -1,5 +1,6 @@
 <main class="main">
   <div class="hero">
+    <img src="../logo.png" alt="Logo MétéoApp" class="logo" />
     <p>Prévisions météo en temps réel, simples et élégantes</p>
   </div>
 
@@ -50,7 +51,7 @@
       <img [src]="resultatsmeteo.current.condition.icon" />
     </p>
 
-    <div>
+    <div class = "buttons-container">
       <button class="add-btn" (click)="addToFavorites()">Ajouter à la liste</button>
 
       <button class="details-btn" (click)="deplierDetails()">
