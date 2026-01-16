@@ -101,7 +101,7 @@ export class App {
   addToFavorites() {
     if (!this.resultatsmeteo) return;
 
-    if (this.favorites.length >= 5) {
+    if (this.favorites.length >= 10) {
       alert('Tu peux enregistrer maximum 5 villes.');
       return;
     }
