@@ -35,6 +35,7 @@ export class App {
         },
         error: (err) => {
           this.resultatsmeteo = null;
+          this.cdr.detectChanges();
         },
       });
   }

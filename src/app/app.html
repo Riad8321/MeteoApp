@@ -1,19 +1,30 @@
 <main class="main">
+  <div class="hero">
+    <p>Prévisions météo en temps réel, simples et élégantes</p>
+  </div>
+
   <div class="recherche">
     <input type="text" [(ngModel)]="villeSaisie" placeholder="Entrez une ville" />
     <button class="boutonrecherche" (click)="recherchemeteo()">Voir la météo</button>
   </div>
-  <div *ngIf="resultatsmeteo" class="carte-meteo">
-    <h3>Meteo à {{ resultatsmeteo.location.name }}</h3>
 
-    <p>Température : {{ resultatsmeteo.current.temp_c }}°</p>
-    <p>Ressenti : {{ resultatsmeteo.current.feelslike_c }}°</p>
-    <p>Condition :<img [src]="resultatsmeteo.current.condition.icon" /></p>
-    <p>Humidité : {{ resultatsmeteo.current.humidity }}%</p>
+  @if (resultatsmeteo) {
+  <div class="carte-meteo">
+    <h3>Météo à {{ resultatsmeteo.location.name }}</h3>
+
+    <p>🌡️ Température : {{ resultatsmeteo.current.temp_c }}°</p>
+    <p>😎 Ressenti : {{ resultatsmeteo.current.feelslike_c }}°</p>
+    <p>
+      Condition :
+      <img [src]="resultatsmeteo.current.condition.icon" />
+    </p>
+    <p>💧 Humidité : {{ resultatsmeteo.current.humidity }}%</p>
   </div>
-  <div *ngIf="!resultatsmeteo">
-    <p>Ville non trouvé</p>
+  } @else {
+  <div class="empty-state">
+    <p>Entrez une ville pour voir la météo ☁️</p>
   </div>
+  }
 </main>
 
 <router-outlet />
