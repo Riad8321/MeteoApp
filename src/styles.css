@@ -20,7 +20,6 @@ button {
   font-family: 'Poppins', sans-serif;
   padding: 2vh;
   overflow-x: hidden;
-  /* Prevent global horizontal scroll */
   width: 100%;
 }
 
@@ -197,9 +196,7 @@ button {
   cursor: not-allowed;
 }
 
-/* Library Containers */
 .library {
-  width: 100%;
   max-width: 100%;
 }
 
@@ -211,7 +208,7 @@ button {
   margin-bottom: 1vh;
   flex-direction: column;
   width: 100%;
-  /* Ensure full width */
+
 }
 
 .logo {
@@ -219,13 +216,13 @@ button {
   margin-bottom: 1.5vh;
 }
 
-/* Library Grid System (Base/Desktop) */
+
 .library-row {
   display: flex;
   flex-wrap: wrap;
   gap: 2vh;
   padding: 1vh 0.5vh 2vh;
-  /* Removed horizontal scroll properties */
+
 }
 
 .library-row::-webkit-scrollbar {
@@ -245,15 +242,10 @@ button {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  flex: 1 1 26vh;
-  /* Allow grow/shrink, base width 26vh */
-  min-width: 26vh;
-  /* Prevent shrinking too much */
-  max-width: 100%;
-  /* Prevent overflowing parent */
+  flex: 0 0 26vh;
+  width: 26vh;
+  max-width: 26vh;
   overflow: hidden;
-  /* contain text overflow */
-  /* Ensure uniform height in grid */
 }
 
 .library-card:hover {
@@ -297,7 +289,7 @@ button {
   .recherche input {
     width: 100%;
     font-size: 1.6vh;
-    /* Prevents zoom on iOS */
+
   }
 
   .boutonrecherche {
@@ -313,7 +305,6 @@ button {
   .selects select {
     width: 100%;
     font-size: 1.6vh;
-    /* Prevents zoom on iOS */
   }
 
   .carte-meteo {
@@ -337,7 +328,6 @@ button {
     width: 100%;
   }
 
-  /* Switch from horizontal scroll to Grid for better visibility on mobile */
   .library-row {
     display: flex;
     flex-wrap: wrap;
@@ -349,7 +339,6 @@ button {
     min-width: 15vh;
     flex: 1 1 15vh;
     width: auto;
-    /* Allow flex to control width */
     font-size: 1.4vh;
     padding: 1.5vh;
     display: flex;
@@ -396,7 +385,6 @@ button {
 
   .selects select {
     flex: 1 1 14vh;
-    /* Allow growing and shrinking */
   }
 
   .carte-meteo {
