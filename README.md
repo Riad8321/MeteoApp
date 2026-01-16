@@ -1,6 +1,6 @@
 # 🌦️ MeteoApp
 
-Application météo développée avec **Angular** permettant de rechercher une ville et d’afficher les conditions météorologiques en temps réel grâce à l’API WeatherAPI.
+Application météo développée avec **Angular** permettant de rechercher une ville et d’afficher les conditions météorologiques en temps réel.
 
 ---
 
@@ -12,6 +12,17 @@ Application météo développée avec **Angular** permettant de rechercher une v
 - 💧 Humidité
 - 🌤️ Icône de la condition météo
 - ⚡ Données en temps réel via API
+- 🔄 Gestion asynchrone avec Observables
+- 💾 Sauvegarde de la dernière recherche dans le LocalStorage
+- 🧠 Affichage dynamique avec `*ngIf` et `ngOnInit`
+
+---
+
+## 🌐 API
+
+- **Source** : OpenWeatherMap
+- **Format** : JSON
+- **Communication** : Asynchrone via `HttpClient`
 
 ---
 
@@ -20,7 +31,7 @@ Application météo développée avec **Angular** permettant de rechercher une v
 - Angular
 - TypeScript
 - HTML / CSS
-- WeatherAPI
+- OpenWeatherMap API
 - RxJS
 - Git & GitHub
 
@@ -32,13 +43,51 @@ Application météo développée avec **Angular** permettant de rechercher une v
 
 ```bash
 git clone https://github.com/Riad8321/MeteoApp.git
+```
 
-Installer les dépendances :
+2. Installer les dépendances :
 
+```bash
 npm install
+```
 
-Ouvrir dans le navigateur :
+3. Lancer l’application :
 
-http://localhost:4200
+```bash
+ng serve
+```
+
+4. Ouvrir dans le navigateur :
 
 ```
+http://localhost:4200
+```
+
+---
+
+## 🧠 Fonctionnement
+
+- L’utilisateur saisit une ville
+- L’application interroge l’API météo
+- Les données sont récupérées de manière asynchrone
+- Les résultats sont affichés dynamiquement
+- La dernière recherche est sauvegardée dans le LocalStorage
+
+---
+
+## 📸 Aperçu
+
+_(Ajoute ici une capture d’écran plus tard)_
+
+---
+
+## 👨‍💻 Auteur
+
+Développé par **[Ton Nom]**
+📍 Projet Angular
+
+---
+
+## 📄 Licence
+
+Ce projet est open-source et libre d’uti

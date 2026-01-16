@@ -4,7 +4,7 @@
     <button class="boutonrecherche" (click)="recherchemeteo()">Voir la météo</button>
   </div>
   <div *ngIf="resultatsmeteo" class="carte-meteo">
-    <h3>Meteo a {{ resultatsmeteo.location.name }}</h3>
+    <h3>Meteo à {{ resultatsmeteo.location.name }}</h3>
 
     <p>Température : {{ resultatsmeteo.current.temp_c }}°</p>
     <p>Ressenti : {{ resultatsmeteo.current.feelslike_c }}°</p>
