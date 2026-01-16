@@ -5,11 +5,7 @@
   </div>
 
   <div class="recherche">
-    <input
-      type="text"
-      [(ngModel)]="villeSaisie"
-      placeholder="Entrez une ville"
-    />
+    <input type="text" [(ngModel)]="villeSaisie" placeholder="Entrez une ville" />
     <button class="boutonrecherche" (click)="recherchemeteo()">
       Voir la météo
     </button>
@@ -23,22 +19,15 @@
       </option>
     </select>
 
-    <select
-      [(ngModel)]="departementSelectionne"
-      (ngModelChange)="onDepartementChange()"
-      [disabled]="!departements.length"
-    >
+    <select [(ngModel)]="departementSelectionne" (ngModelChange)="onDepartementChange()"
+      [disabled]="!departements.length">
       <option value="">Choisir un département</option>
       <option *ngFor="let d of departements" [value]="d.code">
         {{ d.nom }}
       </option>
     </select>
 
-    <select
-      [(ngModel)]="villeSelectionnee"
-      (ngModelChange)="onVilleChange()"
-      [disabled]="!villes.length"
-    >
+    <select [(ngModel)]="villeSelectionnee" (ngModelChange)="onVilleChange()" [disabled]="!villes.length">
       <option value="">Choisir une ville</option>
       <option *ngFor="let v of villes" [value]="v.nom">
         {{ v.nom }}
@@ -47,82 +36,82 @@
   </div>
 
   @if (resultatsmeteo) {
-    <div class="carte-meteo">
-      <h3>Météo à {{ resultatsmeteo.location.name }}</h3>
+  <div class="carte-meteo">
+    <h3>Météo à {{ resultatsmeteo.location.name }}</h3>
 
-      <p>🌡️ Température : {{ resultatsmeteo.current.temp_c }}°</p>
+    <p>🌡️ Température : {{ resultatsmeteo.current.temp_c }}°</p>
 
-      <p>
-        Condition :
-        <img [src]="resultatsmeteo.current.condition.icon" />
-      </p>
+    <p>
+      Condition :
+      <img [src]="resultatsmeteo.current.condition.icon" />
+    </p>
 
-      <div class="buttons-container">
-        <button class="add-btn" (click)="addToFavorites()">
-          Ajouter à la liste
-        </button>
+    <div class="buttons-container">
+      <button class="add-btn" (click)="addToFavorites()">
+        Ajouter à la liste
+      </button>
 
-        <button class="details-btn" (click)="deplierDetails()">
-          {{ afficherDetails ? 'Masquer les détails' : 'Afficher plus de détails' }}
-        </button>
-      </div>
+      <button class="details-btn" (click)="deplierDetails()">
+        {{ afficherDetails ? 'Masquer les détails' : 'Afficher plus de détails' }}
+      </button>
+    </div>
 
-      @if (afficherDetails) {
-        <div class="details">
-          <p>🌬️ Vent : {{ resultatsmeteo.current.wind_kph }} km/h</p>
-          <p>😎 Ressenti : {{ resultatsmeteo.current.feelslike_c }}°</p>
-          <p>💧 Humidité : {{ resultatsmeteo.current.humidity }}%</p>
-          <p>🧭 Direction : {{ resultatsmeteo.current.wind_dir }}</p>
-          <p>🌫️ Visibilité : {{ resultatsmeteo.current.vis_km }} km</p>
-          <p>🌡️ Pression : {{ resultatsmeteo.current.pressure_mb }} mb</p>
-          <p>☀️ UV : {{ resultatsmeteo.current.uv }}</p>
+    @if (afficherDetails) {
+    <div class="details">
+      <p>🌬️ Vent : {{ resultatsmeteo.current.wind_kph }} km/h</p>
+      <p>😎 Ressenti : {{ resultatsmeteo.current.feelslike_c }}°</p>
+      <p>💧 Humidité : {{ resultatsmeteo.current.humidity }}%</p>
+      <p>🧭 Direction : {{ resultatsmeteo.current.wind_dir }}</p>
+      <p>🌫️ Visibilité : {{ resultatsmeteo.current.vis_km }} km</p>
+      <p>🌡️ Pression : {{ resultatsmeteo.current.pressure_mb }} mb</p>
+      <p>☀️ UV : {{ resultatsmeteo.current.uv }}</p>
+    </div>
+    }
+  </div>
+
+  @if (favorites.length > 0) {
+  <div class="library-header">
+    <h2>📚 Ma liste</h2>
+    <button class="sort-btn" (click)="sortFavorites()">
+      Trier {{ sortAsc ? 'Z → A' : 'A → Z' }}
+    </button>
+  </div>
+
+  <div class="library">
+    <div class="library-row">
+      @for (fav of favorites; let i = $index; track i) {
+      <div class="library-card">
+        <h4>{{ fav?.data?.location?.name }}</h4>
+        <p>{{ fav.data.current.temp_c }}°</p>
+        <img [src]="fav.data.current.condition.icon" />
+
+        <div class="library-actions">
+          <button (click)="toggleFavoriteDetails(i)">
+            {{ fav.showDetails ? 'Masquer' : 'Détails' }}
+          </button>
+
+          <button class="danger" (click)="removeFromFavorites(i)">
+            Retirer
+          </button>
         </div>
+
+        @if (fav.showDetails) {
+        <div class="details">
+          <p>🌬️ Vent : {{ fav.data.current.wind_kph }} km/h</p>
+          <p>💧 Humidité : {{ fav.data.current.humidity }}%</p>
+          <p>☀️ UV : {{ fav.data.current.uv }}</p>
+          <p>🌡️ Ressenti : {{ fav.data.current.feelslike_c }}°</p>
+        </div>
+        }
+      </div>
       }
     </div>
-
-    @if (favorites.length > 0) {
-      <div class="library-header">
-        <h2>📚 Ma liste</h2>
-        <button class="sort-btn" (click)="sortFavorites()">
-          Trier {{ sortAsc ? 'Z → A' : 'A → Z' }}
-        </button>
-      </div>
-
-      <div class="library">
-        <div class="library-row">
-          @for (fav of favorites; let i = $index; track i) {
-            <div class="library-card">
-              <h4>{{ fav?.data?.location?.name }}</h4>
-              <p>{{ fav.data.current.temp_c }}°</p>
-              <img [src]="fav.data.current.condition.icon" />
-
-              <div class="library-actions">
-                <button (click)="toggleFavoriteDetails(i)">
-                  {{ fav.showDetails ? 'Masquer' : 'Détails' }}
-                </button>
-
-                <button class="danger" (click)="removeFromFavorites(i)">
-                  Retirer
-                </button>
-              </div>
-
-              @if (fav.showDetails) {
-                <div class="details">
-                  <p>🌬️ Vent : {{ fav.data.current.wind_kph }} km/h</p>
-                  <p>💧 Humidité : {{ fav.data.current.humidity }}%</p>
-                  <p>☀️ UV : {{ fav.data.current.uv }}</p>
-                  <p>🌡️ Ressenti : {{ fav.data.current.feelslike_c }}°</p>
-                </div>
-              }
-            </div>
-          }
-        </div>
-      </div>
-    }
+  </div>
+  }
   } @else {
-    <div class="empty-state">
-      <p>Entrez une ville pour voir la météo ☁️</p>
-    </div>
+  <div class="empty-state">
+    <p>Entrez une ville pour voir la météo ☁️</p>
+  </div>
   }
 </main>
 

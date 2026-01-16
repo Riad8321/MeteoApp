@@ -18,24 +18,27 @@ button {
   align-items: center;
   justify-content: center;
   font-family: 'Poppins', sans-serif;
-  padding: 20px;
+  padding: 2vh;
+  overflow-x: hidden;
+  /* Prevent global horizontal scroll */
+  width: 100%;
 }
 
 .hero {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 3vh;
 }
 
 .hero h1 {
-  font-size: 42px;
+  font-size: 4.2vh;
   font-weight: 700;
   margin: 0;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.05vh;
 }
 
 .hero p {
-  margin-top: 8px;
-  font-size: 17px;
+  margin-top: 0.8vh;
+  font-size: 1.7vh;
   opacity: 0.85;
   color: white;
   font-weight: 500;
@@ -43,115 +46,123 @@ button {
 
 .recherche {
   display: flex;
-  gap: 12px;
-  margin-bottom: 25px;
+  gap: 1.2vh;
+  margin-bottom: 2.5vh;
   background: rgba(255, 255, 255, 0.15);
-  padding: 15px;
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  padding: 1.5vh;
+  border-radius: 1.6vh;
+  backdrop-filter: blur(1vh);
+  box-shadow: 0 0.8vh 3vh rgba(0, 0, 0, 0.3);
 }
 
 .recherche input {
-  padding: 12px 16px;
-  border-radius: 12px;
+  padding: 1.2vh 1.6vh;
+  border-radius: 1.2vh;
   border: none;
   outline: none;
-  font-size: 16px;
-  width: 220px;
+  font-size: 1.6vh;
+  width: 22vh;
   background: rgba(255, 255, 255, 0.8);
 }
 
 .boutonrecherche,
 .sort-btn,
 .library-actions button {
-  padding: 12px 18px;
-  border-radius: 14px;
+  padding: 1.2vh 1.8vh;
+  border-radius: 1.4vh;
   border: none;
   font-weight: 600;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.03vh;
   cursor: pointer;
   background: linear-gradient(135deg, #00c6ff, #0072ff);
   color: white;
-  box-shadow: 0 8px 20px rgba(0, 114, 255, 0.4);
-  transition: all 0.25s ease;
-}
-.buttons-container {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 15px;
-}
-.details-btn, .add-btn, .remove-btn {
-  padding: 12px 18px;
-  border-radius: 14px;
-  border: none;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  cursor: pointer;
-  background: linear-gradient(135deg, #00c6ff, #0072ff);
-  color: white;
-  box-shadow: 0 8px 20px rgba(0, 114, 255, 0.4);
+  box-shadow: 0 0.8vh 2vh rgba(0, 114, 255, 0.4);
   transition: all 0.25s ease;
 }
 
-.add-btn:hover, .remove-btn:hover, .details-btn:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 30px rgba(0, 114, 255, 0.6);
+.buttons-container {
+  display: flex;
+  gap: 1vh;
+  justify-content: center;
+  margin-top: 1.5vh;
 }
+
+.details-btn,
+.add-btn,
+.remove-btn {
+  padding: 1.2vh 1.8vh;
+  border-radius: 1.4vh;
+  border: none;
+  font-weight: 600;
+  letter-spacing: 0.03vh;
+  cursor: pointer;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+  box-shadow: 0 0.8vh 2vh rgba(0, 114, 255, 0.4);
+  transition: all 0.25s ease;
+}
+
+.add-btn:hover,
+.remove-btn:hover,
+.details-btn:hover {
+  transform: translateY(-0.2vh) scale(1.02);
+  box-shadow: 0 1.2vh 3vh rgba(0, 114, 255, 0.6);
+}
+
 .boutonrecherche:hover,
 .sort-btn:hover,
 .library-actions button:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 30px rgba(0, 114, 255, 0.6);
+  transform: translateY(-0.2vh) scale(1.02);
+  box-shadow: 0 1.2vh 3vh rgba(0, 114, 255, 0.6);
 }
 
 .library-actions .danger {
   background: linear-gradient(135deg, #ff4b2b, #ff416c);
-  box-shadow: 0 8px 20px rgba(255, 65, 108, 0.4);
+  box-shadow: 0 0.8vh 2vh rgba(255, 65, 108, 0.4);
 }
 
 .library-actions .danger:hover {
-  box-shadow: 0 12px 30px rgba(255, 65, 108, 0.6);
+  box-shadow: 0 1.2vh 3vh rgba(255, 65, 108, 0.6);
 }
 
 .carte-meteo {
   background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  padding: 25px;
-  border-radius: 20px;
-  width: 320px;
+  backdrop-filter: blur(1.2vh);
+  padding: 2.5vh;
+  border-radius: 2vh;
+  width: 32vh;
   text-align: center;
   color: white;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1vh 4vh rgba(0, 0, 0, 0.4);
   animation: fadeIn 0.5s ease;
 }
 
 .carte-meteo h3 {
-  margin-bottom: 15px;
-  font-size: 22px;
+  margin-bottom: 1.5vh;
+  font-size: 2.2vh;
   font-weight: 600;
 }
 
 .carte-meteo p {
-  margin: 10px 0;
-  font-size: 16px;
-  letter-spacing: 0.3px;
+  margin: 1vh 0;
+  font-size: 1.6vh;
+  letter-spacing: 0.03vh;
 }
 
 .carte-meteo img {
-  width: 32px;
-  height: 32px;
+  width: 3.2vh;
+  height: 3.2vh;
   object-fit: contain;
   vertical-align: middle;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 0.4vh 0.8vh rgba(0, 0, 0, 0.3));
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(1.5vh);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -160,25 +171,25 @@ button {
 
 .selects {
   display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 1.2vh;
+  margin-bottom: 2vh;
 }
 
 .selects select {
-  padding: 12px 16px;
-  border-radius: 14px;
+  padding: 1.2vh 1.6vh;
+  border-radius: 1.4vh;
   border: none;
-  font-size: 15px;
+  font-size: 1.5vh;
   background: rgba(255, 255, 255, 0.85);
   color: #1e1e1e;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(0.8vh);
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.6vh 1.5vh rgba(0, 0, 0, 0.15);
 }
 
 .selects select:hover {
-  transform: translateY(-1px);
+  transform: translateY(-0.1vh);
 }
 
 .selects select:disabled {
@@ -186,27 +197,35 @@ button {
   cursor: not-allowed;
 }
 
+/* Library Containers */
+.library {
+  width: 100%;
+  max-width: 100%;
+}
+
 .library-header {
   display: flex;
   color: white;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 1vh;
   flex-direction: column;
+  width: 100%;
+  /* Ensure full width */
 }
 
 .logo {
-  width: 120px;
-  margin-bottom: 15px;
+  width: 12vh;
+  margin-bottom: 1.5vh;
 }
 
+/* Library Grid System (Base/Desktop) */
 .library-row {
   display: flex;
-  gap: 15px;
-  overflow-x: auto;
-  padding: 10px 5px 20px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+  flex-wrap: wrap;
+  gap: 2vh;
+  padding: 1vh 0.5vh 2vh;
+  /* Removed horizontal scroll properties */
 }
 
 .library-row::-webkit-scrollbar {
@@ -214,79 +233,178 @@ button {
 }
 
 .library-card {
-  flex-shrink: 0;
-  min-width: 160px;
-  scroll-snap-align: center;
   background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(20px);
-  border-radius: 18px;
-  padding: 15px;
+  backdrop-filter: blur(2vh);
+  border-radius: 1.8vh;
+  padding: 2vh;
   text-align: center;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  flex: 1 1 26vh;
+  /* Allow grow/shrink, base width 26vh */
+  min-width: 26vh;
+  /* Prevent shrinking too much */
+  max-width: 100%;
+  /* Prevent overflowing parent */
+  overflow: hidden;
+  /* contain text overflow */
+  /* Ensure uniform height in grid */
 }
 
 .library-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-0.5vh);
+  box-shadow: 0 1vh 2.5vh rgba(0, 0, 0, 0.2);
 }
 
 .library-actions {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 1vh;
 }
 
 .library-actions button {
   flex: 1;
-  margin: 0 4px;
+  margin: 0 0.4vh;
 }
 
 /* Responsive */
 
 @media (max-width: 600px) {
+  .main {
+    padding: 1.5vh;
+  }
+
+  .hero h1 {
+    font-size: 3.2vh;
+  }
+
+  .hero p {
+    font-size: 1.5vh;
+  }
+
   .recherche {
     flex-direction: column;
     width: 100%;
+    gap: 1vh;
+    padding: 1.2vh;
   }
 
-  .recherche input,
-  .boutonrecherche,
-  .selects,
-  .selects select,
-  .sort-btn,
+  .recherche input {
+    width: 100%;
+    font-size: 1.6vh;
+    /* Prevents zoom on iOS */
+  }
+
+  .boutonrecherche {
+    width: 100%;
+  }
+
+  .selects {
+    flex-direction: column;
+    width: 100%;
+    gap: 1vh;
+  }
+
+  .selects select {
+    width: 100%;
+    font-size: 1.6vh;
+    /* Prevents zoom on iOS */
+  }
+
   .carte-meteo {
     width: 100%;
+    padding: 2vh;
   }
 
   .library-header {
     flex-direction: column;
-    gap: 10px;
+    align-items: stretch;
+    gap: 1.5vh;
+  }
+
+  .library-header h2 {
+    text-align: center;
+    margin: 0;
+    font-size: 2vh;
+  }
+
+  .sort-btn {
+    width: 100%;
+  }
+
+  /* Switch from horizontal scroll to Grid for better visibility on mobile */
+  .library-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5vh;
+    padding: 0.5vh;
   }
 
   .library-card {
-    min-width: 130px;
-    font-size: 14px;
+    min-width: 15vh;
+    flex: 1 1 15vh;
+    width: auto;
+    /* Allow flex to control width */
+    font-size: 1.4vh;
+    padding: 1.5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .library-card h4 {
+    margin: 0 0 0.8vh 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .library-card img {
-    width: 40px;
+    width: 4.5vh;
+    height: 4.5vh;
+    margin: 0.5vh auto;
+  }
+
+  .library-actions {
+    flex-direction: column;
+    gap: 0.8vh;
+  }
+
+  .library-actions button {
+    margin: 0;
+    width: 100%;
+    font-size: 1.2vh;
+    padding: 0.8vh;
   }
 }
 
 @media (min-width: 601px) and (max-width: 1024px) {
-  .recherche,
+  .recherche {
+    width: 100%;
+    max-width: 60vh;
+  }
+
   .selects {
     flex-wrap: wrap;
     justify-content: center;
   }
 
+  .selects select {
+    flex: 1 1 14vh;
+    /* Allow growing and shrinking */
+  }
+
   .carte-meteo {
-    width: 90%;
-    max-width: 400px;
+    width: 80%;
+    max-width: 45vh;
   }
 
   .library-card {
-    min-width: 160px;
+    min-width: 16vh;
   }
 }
