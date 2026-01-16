@@ -101,6 +101,11 @@ export class App {
   addToFavorites() {
     if (!this.resultatsmeteo) return;
 
+    if (this.favorites.length >= 5) {
+      alert('Tu peux enregistrer maximum 5 villes.');
+      return;
+    }
+
     const existeDeja = this.favorites.some(
       (fav) => fav.data.location.name === this.resultatsmeteo.location.name
     );
