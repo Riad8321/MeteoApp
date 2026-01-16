@@ -37,12 +37,11 @@
 
   @if (resultatsmeteo) {
   <div class="carte-meteo">
-    <h3>Météo à {{ resultatsmeteo.location.name }}</h3>
+    <h3>{{ resultatsmeteo.location.name }}</h3>
 
-    <p>🌡️ Température : {{ resultatsmeteo.current.temp_c }}°</p>
+    <p>{{ resultatsmeteo.current.temp_c }}°</p>
 
     <p>
-      Condition :
       <img [src]="resultatsmeteo.current.condition.icon" />
     </p>
 

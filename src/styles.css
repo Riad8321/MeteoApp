@@ -89,7 +89,7 @@ button {
 .details-btn,
 .add-btn,
 .remove-btn {
-  padding: 1.2vh 1.8vh;
+  padding: 1.2vh 0.8vh;
   border-radius: 1.4vh;
   border: none;
   font-weight: 600;
@@ -125,14 +125,16 @@ button {
 }
 
 .carte-meteo {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(1.2vh);
-  padding: 2.5vh;
-  border-radius: 2vh;
-  width: 32vh;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(2vh);
+  border-radius: 1.8vh;
+  padding: 2vh;
+  width: 26vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   text-align: center;
   color: white;
-  box-shadow: 0 1vh 4vh rgba(0, 0, 0, 0.4);
   animation: fadeIn 0.5s ease;
 }
 
@@ -149,8 +151,8 @@ button {
 }
 
 .carte-meteo img {
-  width: 3.2vh;
-  height: 3.2vh;
+  width: 22.2vh;
+  height: 22.2vh;
   object-fit: contain;
   vertical-align: middle;
   filter: drop-shadow(0 0.4vh 0.8vh rgba(0, 0, 0, 0.3));
