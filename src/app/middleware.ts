@@ -7,11 +7,23 @@ import { environment } from '../environments/environment';
   providedIn: 'root',
 })
 export class Middleware {
-  meteo: string = '';
-  constructor(private Http: HttpClient) {}
-  getmeteo(villeSaisie: String): Observable<any> {
-    return this.Http.get(
+  constructor(private http: HttpClient) {}
+
+  getmeteo(villeSaisie: string): Observable<any> {
+    return this.http.get(
       `https://api.weatherapi.com/v1/current.json?key=${environment.weatherApiKey}&q=${villeSaisie}&aqi=no`
     );
+  }
+
+  getRegions(): Observable<any> {
+    return this.http.get(`https://geo.api.gouv.fr/regions`);
+  }
+
+  getDepartementsByRegion(codeRegion: string): Observable<any> {
+    return this.http.get(`https://geo.api.gouv.fr/regions/${codeRegion}/departements`);
+  }
+
+  getVillesByDepartement(codeDepartement: string): Observable<any> {
+    return this.http.get(`https://geo.api.gouv.fr/departements/${codeDepartement}/communes`);
   }
 }

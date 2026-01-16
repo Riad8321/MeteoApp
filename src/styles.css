@@ -6,6 +6,10 @@ body {
   margin: 0;
 }
 
+button {
+  font-family: 'Poppins', sans-serif;
+}
+
 .main {
   min-height: 100vh;
   background: linear-gradient(135deg, #1e3c72, #2a5298);
@@ -33,6 +37,8 @@ body {
   margin-top: 8px;
   font-size: 17px;
   opacity: 0.85;
+  color: white;
+  font-weight: 500;
 }
 
 .recherche {
@@ -56,21 +62,45 @@ body {
   background: rgba(255, 255, 255, 0.8);
 }
 
-.boutonrecherche {
+.boutonrecherche,
+.add-btn,
+.sort-btn,
+.library-actions button {
   padding: 12px 18px;
-  border-radius: 12px;
+  border-radius: 14px;
   border: none;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
   background: linear-gradient(135deg, #00c6ff, #0072ff);
   color: white;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 5px 15px rgba(0, 114, 255, 0.4);
+  box-shadow: 0 8px 20px rgba(0, 114, 255, 0.4);
+  transition: all 0.25s ease;
 }
 
-.boutonrecherche:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 114, 255, 0.6);
+.details-btn {
+  border: none;
+  background-color: transparent;
+  padding-top: 2rem;
+}
+.details-btn:hover {
+  cursor: pointer;
+}
+
+.boutonrecherche:hover,
+.sort-btn:hover,
+.library-actions button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 114, 255, 0.6);
+}
+
+.library-actions .danger {
+  background: linear-gradient(135deg, #ff4b2b, #ff416c);
+  box-shadow: 0 8px 20px rgba(255, 65, 108, 0.4);
+}
+
+.library-actions .danger:hover {
+  box-shadow: 0 12px 30px rgba(255, 65, 108, 0.6);
 }
 
 .carte-meteo {
@@ -101,15 +131,8 @@ body {
   width: 32px;
   height: 32px;
   object-fit: contain;
-  margin-left: 0px;
-  padding-bottom: 2px;
   vertical-align: middle;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-}
-
-.main > div p {
-  color: white;
-  font-weight: 500;
 }
 
 @keyframes fadeIn {
@@ -120,5 +143,132 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.selects {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.selects select {
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: none;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #1e1e1e;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.selects select:hover {
+  transform: translateY(-1px);
+}
+
+.selects select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.library-header {
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.library-row {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 10px 5px 20px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.library-row::-webkit-scrollbar {
+  display: none;
+}
+
+.library-card {
+  flex-shrink: 0;
+  min-width: 160px;
+  scroll-snap-align: center;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  border-radius: 18px;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  color: white;
+}
+
+.library-card:hover {
+  transform: scale(1.05);
+}
+
+.library-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.library-actions button {
+  flex: 1;
+  margin: 0 4px;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .recherche {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .recherche input,
+  .boutonrecherche,
+  .selects,
+  .selects select,
+  .sort-btn,
+  .carte-meteo {
+    width: 100%;
+  }
+
+  .library-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .library-card {
+    min-width: 130px;
+    font-size: 14px;
+  }
+
+  .library-card img {
+    width: 40px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .recherche,
+  .selects {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .carte-meteo {
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .library-card {
+    min-width: 160px;
   }
 }
