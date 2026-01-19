@@ -120,8 +120,13 @@ export class App implements OnInit {
   ajouterAuxFavoris() {
     if (!this.weatherData) return;
 
+<<<<<<< HEAD
     if (this.favorites.length >= 5) {
       alert('Tu as déjà 5 favoris, supprime-en un !');
+=======
+    if (this.favorites.length >= 10) {
+      alert('Tu peux enregistrer maximum 5 villes.');
+>>>>>>> 2114592deb2c36686b399e43a9b2f3651f235568
       return;
     }
 
