@@ -1,152 +1,172 @@
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-import { Middleware } from './middleware';
+import { SearchComponent } from './components/search/search.component';
+import { WeatherCardComponent } from './components/weather-card/weather-card.component';
+import { FavoritesListComponent } from './components/favorites-list/favorites-list.component';
+import { WeatherModalComponent } from './components/weather-modal/weather-modal.component';
+import { WeatherService } from './services/weather.service';
+import { FavoriteItem, GeoDepartement, GeoRegion, GeoVille, WeatherResponse } from './models/weather.models';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, FormsModule],
+  standalone: true,
+  imports: [
+    RouterOutlet,
+    CommonModule,
+    FormsModule,
+    SearchComponent,
+    WeatherCardComponent,
+    FavoritesListComponent,
+    WeatherModalComponent
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class App {
-  villeSaisie: string = '';
-  resultatsmeteo: any = null;
+export class App implements OnInit {
+  title = 'MeteoApp';
 
-  isLoading: boolean = false;
+  weatherData: WeatherResponse | null = null;
 
-  regions: any[] = [];
-  departements: any[] = [];
-  villes: any[] = [];
+  // Modal State
+  selectedWeatherForModal: WeatherResponse | null = null;
 
-  regionSelectionnee: string = '';
-  departementSelectionne: string = '';
-  villeSelectionnee: string = '';
+  regions: GeoRegion[] = [];
+  departements: GeoDepartement[] = [];
+  villes: GeoVille[] = [];
 
-  afficherDetails: boolean = false;
-  favorites: any[] = [];
+  favorites: FavoriteItem[] = [];
+  sortAsc = true;
 
-  sortAsc: boolean = true;
+
+  constructor(private weatherService: WeatherService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
-    console.log('le composant est chargé');
+    this.chargerDonnees();
+  }
 
-    const sauvegarde = localStorage.getItem('derniereMeteo');
-
-    if (sauvegarde) {
-      this.resultatsmeteo = JSON.parse(sauvegarde);
-      this.villeSaisie = this.resultatsmeteo.location.name;
+  chargerDonnees() {
+    const lastWeather = localStorage.getItem('derniereMeteo');
+    if (lastWeather) {
+      this.weatherData = JSON.parse(lastWeather);
     }
 
-    this.service.getRegions().subscribe((data) => {
+    const savedFavorites = localStorage.getItem('favorites');
+    if (savedFavorites) {
+      this.favorites = JSON.parse(savedFavorites);
+    }
+
+    this.weatherService.getRegions().subscribe((data) => {
       this.regions = data;
+      this.cdr.detectChanges();
     });
-    const favorisSauvegardes = localStorage.getItem('favorites');
-    if (favorisSauvegardes) {
-      this.favorites = JSON.parse(favorisSauvegardes);
-    }
   }
 
-  protected readonly title = signal('MeteoApp');
-  constructor(private service: Middleware, private cdr: ChangeDetectorRef) {}
-
-  recherchemeteo() {
-    if (this.villeSaisie !== '')
-      this.service.getmeteo(this.villeSaisie).subscribe({
-        next: (donnees) => {
-          this.resultatsmeteo = donnees;
-          console.log(donnees);
-          localStorage.setItem('derniereMeteo', JSON.stringify(donnees));
-          this.isLoading = false;
-          this.cdr.detectChanges();
-        },
-        error: (err) => {
-          this.resultatsmeteo = null;
-          this.isLoading = false;
-          this.cdr.detectChanges();
-        },
-      });
+  // --- Modal Logic ---
+  ouvrirModal(meteo: WeatherResponse) {
+    this.selectedWeatherForModal = meteo;
+    this.cdr.detectChanges();
   }
-  onRegionChange() {
+
+  fermerModal() {
+    this.selectedWeatherForModal = null;
+    this.cdr.detectChanges();
+  }
+
+  //--- Fonctions de Recherche ---
+
+  lancerRecherche(ville: string) {
+    this.weatherService.getWeather(ville).subscribe({
+      next: (resultat) => {
+        this.weatherData = resultat;
+        localStorage.setItem('derniereMeteo', JSON.stringify(resultat));
+        this.cdr.detectChanges();
+      },
+      error: (erreur) => {
+        console.error('Erreur météo:', erreur);
+        this.weatherData = null;
+        alert("Impossible de trouver la météo pour cette ville !");
+        this.cdr.detectChanges();
+      },
+    });
+  }
+
+  quandRegionChange(codeRegion: string) {
     this.departements = [];
     this.villes = [];
-    this.departementSelectionne = '';
-    this.villeSelectionnee = '';
 
-    this.service.getDepartementsByRegion(this.regionSelectionnee).subscribe((data) => {
-      this.departements = data;
-      this.cdr.detectChanges();
-    });
+    if (codeRegion) {
+      this.weatherService.getDepartementsByRegion(codeRegion).subscribe((data) => {
+        this.departements = data;
+        this.cdr.detectChanges();
+      });
+    }
   }
 
-  onDepartementChange() {
+  quandDepartementChange(codeDep: string) {
     this.villes = [];
-    this.villeSelectionnee = '';
 
-    this.service.getVillesByDepartement(this.departementSelectionne).subscribe((data) => {
-      this.villes = data;
-      this.cdr.detectChanges();
-    });
+    if (codeDep) {
+      this.weatherService.getVillesByDepartement(codeDep).subscribe((data) => {
+        this.villes = data;
+        this.cdr.detectChanges();
+      });
+    }
   }
 
-  onVilleChange() {
-    this.villeSaisie = this.villeSelectionnee;
-    this.cdr.detectChanges();
-  }
-  deplierDetails() {
-    this.afficherDetails = !this.afficherDetails;
-    this.cdr.detectChanges();
-  }
-  addToFavorites() {
-    if (!this.resultatsmeteo) return;
+  // --- Fonctions Favoris ---
+
+  ajouterAuxFavoris() {
+    if (!this.weatherData) return;
 
     if (this.favorites.length >= 5) {
-      alert('Tu peux enregistrer maximum 5 villes.');
+      alert('Tu as déjà 5 favoris, supprime-en un !');
       return;
     }
 
     const existeDeja = this.favorites.some(
-      (fav) => fav.data.location.name === this.resultatsmeteo.location.name
+      (fav) => fav.data.location.name === this.weatherData!.location.name
     );
 
     if (!existeDeja) {
       this.favorites.push({
-        data: this.resultatsmeteo,
-        showDetails: false,
+        data: this.weatherData,
+        showDetails: false
       });
-
-      localStorage.setItem('favorites', JSON.stringify(this.favorites));
+      this.sauvegarderFavoris();
+    } else {
+      alert("Cette ville est déjà dans tes favoris !");
     }
   }
 
-  selectFavorite(fav: any) {
-    this.resultatsmeteo = fav.data;
-    this.villeSaisie = fav.data.location.name;
+  voirFavori(fav: FavoriteItem) {
+    this.weatherData = fav.data;
+    localStorage.setItem('derniereMeteo', JSON.stringify(this.weatherData));
   }
 
-  toggleFavoriteDetails(index: number) {
-    this.favorites[index].showDetails = !this.favorites[index].showDetails;
-  }
-  removeFromFavorites(index: number) {
+  supprimerFavori(index: number) {
     this.favorites.splice(index, 1);
-    localStorage.setItem('favorites', JSON.stringify(this.favorites));
+    this.sauvegarderFavoris();
   }
 
-  sortFavorites() {
+  trierFavoris() {
     this.favorites.sort((a, b) => {
-      const nameA = a.data.location.name.toLowerCase();
-      const nameB = b.data.location.name.toLowerCase();
+      const nomA = a.data.location.name.toLowerCase();
+      const nomB = b.data.location.name.toLowerCase();
 
       if (this.sortAsc) {
-        return nameA.localeCompare(nameB);
+        return nomA.localeCompare(nomB);
       } else {
-        return nameB.localeCompare(nameA);
+        return nomB.localeCompare(nomA);
       }
     });
 
     this.sortAsc = !this.sortAsc;
+    this.sauvegarderFavoris();
+  }
 
+  sauvegarderFavoris() {
     localStorage.setItem('favorites', JSON.stringify(this.favorites));
   }
 }

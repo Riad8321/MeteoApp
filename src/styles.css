@@ -33,6 +33,7 @@ button {
   font-weight: 700;
   margin: 0;
   letter-spacing: -0.05vh;
+  color: white;
 }
 
 .hero p {
@@ -41,6 +42,13 @@ button {
   opacity: 0.85;
   color: white;
   font-weight: 500;
+}
+
+app-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .recherche {
@@ -52,6 +60,7 @@ button {
   border-radius: 1.6vh;
   backdrop-filter: blur(1vh);
   box-shadow: 0 0.8vh 3vh rgba(0, 0, 0, 0.3);
+  justify-content: center;
 }
 
 .recherche input {
@@ -396,5 +405,133 @@ button {
 
   .library-card {
     min-width: 16vh;
+  }
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(0.5vh);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  padding: 3vh;
+  border-radius: 2vh;
+  width: 90%;
+  max-width: 50vh;
+  color: white;
+  box-shadow: 0 2vh 4vh rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2vh;
+  border-bottom: 0.1vh solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 1vh;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 2.5vh;
+  color: white;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 3vh;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0 1vh;
+}
+
+.close-btn:hover {
+  color: white;
+}
+
+.modal-body {
+  text-align: center;
+}
+
+.main-info {
+  margin-bottom: 2vh;
+}
+
+.temp-big {
+  font-size: 5vh;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+  text-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.2);
+}
+
+.condition-text {
+  font-size: 1.8vh;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0.5vh 0;
+}
+
+.details-grid-modal {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5vh;
+  margin-top: 2vh;
+}
+
+.detail-box {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 1.2vh;
+  border-radius: 1.5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(0.5vh);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-box .icon {
+  font-size: 2vh;
+  margin-bottom: 0.5vh;
+}
+
+.detail-box .label {
+  font-size: 1.2vh;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.detail-box .val {
+  font-size: 1.6vh;
+  font-weight: 600;
+  color: white;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(3vh);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

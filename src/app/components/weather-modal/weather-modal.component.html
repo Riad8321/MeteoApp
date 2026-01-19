@@ -1,0 +1,51 @@
+@if (weather) {
+<div class="modal-overlay" (click)="fermer()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+            <h2>{{ weather.location.name }}</h2>
+            <button class="close-btn" (click)="fermer()">×</button>
+        </div>
+
+        <div class="modal-body">
+            <div class="main-info">
+                <img [src]="weather.current.condition.icon" [alt]="weather.current.condition.text">
+                <div class="temp-big">{{ weather.current.temp_c }}°C</div>
+                <p class="condition-text">{{ weather.current.condition.text }}</p>
+            </div>
+
+            <div class="details-grid-modal">
+                <div class="detail-box">
+                    <span class="icon">🌡️</span>
+                    <span class="label">Ressenti</span>
+                    <span class="val">{{ weather.current.feelslike_c }}°C</span>
+                </div>
+                <div class="detail-box">
+                    <span class="icon">💨</span>
+                    <span class="label">Vent</span>
+                    <span class="val">{{ weather.current.wind_kph }} km/h</span>
+                </div>
+                <div class="detail-box">
+                    <span class="icon">💧</span>
+                    <span class="label">Humidité</span>
+                    <span class="val">{{ weather.current.humidity }}%</span>
+                </div>
+                <div class="detail-box">
+                    <span class="icon">☀️</span>
+                    <span class="label">UV</span>
+                    <span class="val">{{ weather.current.uv }}</span>
+                </div>
+                <div class="detail-box">
+                    <span class="icon">🔽</span>
+                    <span class="label">Pression</span>
+                    <span class="val">{{ weather.current.pressure_mb }} mb</span>
+                </div>
+                <div class="detail-box">
+                    <span class="icon">🌧️</span>
+                    <span class="label">Précip.</span>
+                    <span class="val">{{ weather.current.precip_mm }} mm</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}

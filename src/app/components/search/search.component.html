@@ -1,0 +1,28 @@
+<div class="recherche">
+    <input type="text" [(ngModel)]="villeManuelle" placeholder="Rechercher une ville..."
+        (keyup.enter)="rechercherManuellement()" />
+    <button class="boutonrecherche" (click)="rechercherManuellement()">Rechercher</button>
+</div>
+
+<div class="selects">
+    <select [(ngModel)]="selectedRegion" (change)="onRegionChange()">
+        <option value="">Sélectionner une région</option>
+        @for (region of regions; track region.code) {
+        <option [value]="region.code">{{ region.nom }}</option>
+        }
+    </select>
+
+    <select [(ngModel)]="selectedDepartement" (change)="onDepartementChange()" [disabled]="!departements.length">
+        <option value="">Sélectionner un département</option>
+        @for (dept of departements; track dept.code) {
+        <option [value]="dept.code">{{ dept.nom }}</option>
+        }
+    </select>
+
+    <select [(ngModel)]="selectedVille" (change)="onVilleListChange()" [disabled]="!villes.length">
+        <option value="">Sélectionner une ville</option>
+        @for (ville of villes; track ville.nom) {
+        <option [value]="ville.nom">{{ ville.nom }}</option>
+        }
+    </select>
+</div>

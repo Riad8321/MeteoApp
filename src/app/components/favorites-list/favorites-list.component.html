@@ -1,0 +1,31 @@
+@if (favorites.length > 0) {
+<div class="library">
+    <div class="library-header">
+        <h2>Mes Favoris ({{ favorites.length }}/5)</h2>
+        <button class="sort-btn" (click)="trier()">
+            Trier {{ sortAsc ? 'A-Z' : 'Z-A' }}
+        </button>
+    </div>
+
+    <div class="library-row">
+        @for (fav of favorites; track fav.data.location.name; let i = $index) {
+        <div class="library-card" (click)="choisirFavori(fav)">
+            <div>
+                <h4>{{ fav.data.location.name }}</h4>
+                <img [src]="fav.data.current.condition.icon" alt="icon">
+                <h3>{{ fav.data.current.temp_c }}°C</h3>
+            </div>
+
+            <div class="library-actions">
+                <button (click)="voirDetails(fav, $event)">
+                    Détails
+                </button>
+                <button class="danger" (click)="supprimer(i, $event)">
+                    Suppr.
+                </button>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+}

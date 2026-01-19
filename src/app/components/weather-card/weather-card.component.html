@@ -1,0 +1,22 @@
+@if (weatherData) {
+<div class="carte-meteo">
+    <div>
+        <h3>{{ weatherData.location.name }}</h3>
+        <p>{{ weatherData.location.region }} - {{ weatherData.location.country }}</p>
+
+        <img [src]="weatherData.current.condition.icon" [alt]="weatherData.current.condition.text">
+
+        <h3>{{ weatherData.current.temp_c }}°C</h3>
+        <p>{{ weatherData.current.condition.text }}</p>
+    </div>
+
+    <div class="buttons-container">
+        <button class="details-btn" (click)="voirDetails()">
+            Détails
+        </button>
+        <button class="add-btn" (click)="clicFavoris()">
+            + Favoris
+        </button>
+    </div>
+</div>
+}
