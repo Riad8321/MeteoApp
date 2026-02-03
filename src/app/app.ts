@@ -30,8 +30,6 @@ export class App {
   sortAsc: boolean = true;
 
   ngOnInit() {
-    console.log('le composant est chargé');
-
     const sauvegarde = localStorage.getItem('derniereMeteo');
 
     if (sauvegarde) {
@@ -49,7 +47,10 @@ export class App {
   }
 
   protected readonly title = signal('MeteoApp');
-  constructor(private service: Middleware, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private service: Middleware,
+    private cdr: ChangeDetectorRef,
+  ) {}
 
   recherchemeteo() {
     if (this.villeSaisie !== '')
@@ -102,12 +103,12 @@ export class App {
     if (!this.resultatsmeteo) return;
 
     if (this.favorites.length >= 10) {
-      alert('Tu peux enregistrer maximum 5 villes.');
+      alert('Tu as déjà 10 favoris, supprime-en un !');
       return;
     }
 
     const existeDeja = this.favorites.some(
-      (fav) => fav.data.location.name === this.resultatsmeteo.location.name
+      (fav) => fav.data.location.name === this.resultatsmeteo.location.name,
     );
 
     if (!existeDeja) {

@@ -29,7 +29,7 @@ Application météo développée avec **Angular** permettant de rechercher une v
 
 ## 🌐 API
 
-- **Source** : [OpenWeatherMap](https://www.weatherapi.com/)
+- **Source** : [WeatherApi](https://www.weatherapi.com/)
 - **Format** : JSON
 - **Communication** : Asynchrone via `HttpClient`
 
@@ -75,8 +75,6 @@ La clé est ensuite utilisée dans le service via :
 import { environment } from '../environments/environment';
 ```
 
-⚠️ Ne partage jamais ta vraie clé API publiquement.
-
 ---
 
 ## 📦 Installation
@@ -114,12 +112,6 @@ http://localhost:4200
 - Les données sont récupérées de manière asynchrone
 - Les résultats sont affichés dynamiquement
 - La dernière recherche est sauvegardée dans le LocalStorage
-
----
-
-## 📸 Aperçu
-
-_(Ajoute ici une capture d’écran plus tard)_
 
 ---
 
